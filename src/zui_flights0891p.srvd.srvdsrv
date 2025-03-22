@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZI_Flights0891p_S'
+define service ZUI_FLIGHTS0891P {
+  expose ZI_FLIGHTS0891P_S as Flights0891pAll;
+  expose ZI_FLIGHTS0891P as Flights0891p;
+}

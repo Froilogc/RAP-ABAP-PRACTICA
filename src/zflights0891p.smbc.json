@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintain Flights 0891P",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "serviceConfiguration": {
+    "serviceBinding": "ZUI_FLIGHTS0891P_O4",
+    "serviceName": "ZUI_FLIGHTS0891P_O4",
+    "serviceVersion": "0001",
+    "rootEntitySet": "Flights0891pAll",
+    "name": "Flights 0891P",
+    "configurationGroup": "",
+    "skipRootEntity": true
+  },
+  "appConfiguration": {
+    "listReport": {},
+    "objectPages": [
+      {
+        "entitySet": "Flights0891pAll",
+        "variantManagement": "control"
+      }
+    ],
+    "tableSettings": [
+      {
+        "entitySet": "Flights0891p",
+        "selectAll": true,
+        "rowCountMode": "auto",
+        "frozenColumnCount": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+managed implementation in class ZBP_I_FLIGHTS0891P_S unique;
+strict;
+with draft;
+define behavior for ZI_Flights0891p_S alias Flights0891pAll
+draft table ZTRAVEL_089_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  association _Flights0891p { create ( features : instance ); with draft; }
+}
+
+define behavior for ZI_Flights0891p alias Flights0891p ##UNMAPPED_FIELD
+persistent table ZTRAVEL_0891_P
+draft table ZTRAVEL_0891__D
+lock dependent by _Flights0891pAll
+authorization dependent by _Flights0891pAll
+
+{
+  field ( mandatory : create )
+   TravelId;
+
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   TravelId;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZTRAVEL_0891_P
+  {
+    TravelId = TRAVEL_ID;
+    AgencyId = AGENCY_ID;
+    CustomerId = CUSTOMER_ID;
+    BeginDate = BEGIN_DATE;
+    EndDate = END_DATE;
+    BookingFee = BOOKING_FEE;
+    TotalPrice = TOTAL_PRICE;
+    CurrencyCode = CURRENCY_CODE;
+    Description = DESCRIPTION;
+    OverallStatus = OVERALL_STATUS;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+  association _Flights0891pAll { with draft; }
+}
